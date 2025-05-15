@@ -1,6 +1,6 @@
 name: iframe_cashpay
 description: Flutter plugin for CashPay wallet payments via iframe with enhanced JavaScript communication.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/devhakeem5/iframe_cashpay
 repository: https://github.com/devhakeem5/iframe_cashpay.git
 

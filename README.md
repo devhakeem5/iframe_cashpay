@@ -30,44 +30,7 @@ To start using this plugin, add `iframe_cashpay` as a [dependency in your pubspe
 
 ```yaml
 dependencies:
-  iframe_cashpay: ^1.0.0
-```
-
-## 🔄 JavaScript Communication
-
-### From Flutter to JavaScript
-```dart
-// Get the controller
-final controller = await _webViewController.future;
-
-// Execute JS
-controller.evaluateJavascript(source:
-  document.getElementById('amount').value = '100';);
-```
-
-### From JavaScript to Flutter
-```JavaScript
-// Standard CashPay Messages
-window.flutter.postMessage('Confirmation');  // Payment success
-window.flutter.postMessage('Cancel');        // User cancelled
-window.flutter.postMessage('Error');         // Transaction failed
-
-// Custom Data (JSON format recommended)
-window.flutter.postMessage(JSON.stringify({
-  event: 'payment_processed',
-  orderId: '12345',
-  amount: 100.00
-}));
-```
-### Handling Custom Messages
-```dart
-IframeCashPay(
-  // ...required parameters
-  onMessage: (jsonString) {               // Handle custom JSON messages
-    final data = jsonDecode(jsonString);
-    print('Received: ${data['event']}');
-  },
-)
+  iframe_cashpay: ^1.0.1
 ```
 
 ## Example
@@ -77,8 +40,6 @@ import 'package:iframe_cashpay/iframe_cashpay.dart';
 
 class PaySampleAppState extends State<PaySampleApp> {
   
-
-
   @override
   Widget build(BuildContext context) {
     Future<String> payItems(itemList) async {
@@ -125,6 +86,7 @@ class PaySampleAppState extends State<PaySampleApp> {
                             onConfirmPayment: onConfirmPayment,
                             onCancel: onCancel,
                             onError: onError,
+                            loadingWidget: Center(child: CircularProgressIndicator(),),
                           ));
                     }));
               }),
@@ -152,4 +114,41 @@ class PaySampleAppState extends State<PaySampleApp> {
   }
 }
 ```
+## 🔄 JavaScript Communication
+
+### From Flutter to JavaScript
+```dart
+// Get the controller
+final controller = await _webViewController.future;
+
+// Execute JS
+controller.evaluateJavascript(source:
+  document.getElementById('amount').value = '100';);
+```
+
+### From JavaScript to Flutter
+```JavaScript
+// Standard CashPay Messages
+window.flutter.postMessage('Confirmation');  // Payment success
+window.flutter.postMessage('Cancel');        // User cancelled
+window.flutter.postMessage('Error');         // Transaction failed
+
+// Custom Data (JSON format recommended)
+window.flutter.postMessage(JSON.stringify({
+  event: 'payment_processed',
+  orderId: '12345',
+  amount: 100.00
+}));
+```
+### Handling Custom Messages
+```dart
+IframeCashPay(
+  // ...required parameters
+  onMessage: (jsonString) {               // Handle custom JSON messages
+    final data = jsonDecode(jsonString);
+    print('Received: ${data['event']}');
+  },
+)
+```
+
 Made with ❤️ by Dev-HaKeeM Al-Najjar + AI | (https://www.facebook.com/share/1APVa9LvEP/)

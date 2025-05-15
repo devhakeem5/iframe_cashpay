@@ -104,7 +104,9 @@ class PaySampleAppState extends State<PaySampleApp> {
                         onConfirmPayment: onConfirmPayment,
                         onCancel: onCancel,
                         onError: onError,
+                        loadingWidget: Center(child: CircularProgressIndicator(),),
                       ),
+                      
                     );
                   },
                 ),
@@ -161,7 +163,7 @@ class PaySampleAppState extends State<PaySampleApp> {
   /// onError("Error");
   /// ```
   onError(message) {
-    //After return Error from iFrameCashPay.
-    Navigator.pop(context);
+    // //After return Error from iFrameCashPay.
+    // Navigator.pop(context);
   }
 }
