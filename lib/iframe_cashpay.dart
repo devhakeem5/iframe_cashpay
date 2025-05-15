@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -69,6 +68,7 @@ class IframeCashPayState extends State<IframeCashPay> {
                   isLoading = false;
                 });
               },
+              // ignore: deprecated_member_use
               onLoadError: (controller, url, code, message) {
                 setState(() {
                   hasError = true;
